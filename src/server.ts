@@ -13,3 +13,22 @@ interface Project {
     description: string;
     image_src: string;
 }
+
+app.use("/*", cors());
+
+app.use("/statics/*", serveStatic({root: "./"}));
+
+app.get("/json", async (c) => {
+    const data = await readFile("./data.json", "utf-8");
+    return c.json(JSON.parse(data));
+});
+
+
+const port = app.listen({ port: 4023});
+
+console.log("IT'S WORKING");
+
+serve({
+    fetch: app.fetch,
+    port,
+});
