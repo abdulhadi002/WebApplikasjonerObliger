@@ -1,0 +1,19 @@
+nav{
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul{
+    display: flex;
+}
+
+nav ul li{
+    padding: 1rem;
+    list-style: none;
+}
+
+.new-article{
+    display: flex;
+    align-items: center;
+}
+
