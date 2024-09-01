@@ -24,11 +24,10 @@ app.get("/json", async (c) => {
 });
 
 
-const port = app.listen({ port: 4023});
+const port = ({ port: 4023});
 
 console.log("IT'S WORKING");
 
 serve({
     fetch: app.fetch,
-    port,
 });
