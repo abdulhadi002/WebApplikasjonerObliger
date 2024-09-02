@@ -43,8 +43,13 @@ function handleFormSubmit(): void {
             'Image-scr': 'Image'
         };
 
+        const projectSection = document.querySelector('.all-projects');
+        if (projectSection) {
+            const article = document.createElement('article');
+            article.innerHTML = '{project: {id: number; "project-name": string; description: string; "image-scr: string;"[];}}';
 
-        
+            projectSection.appendChild(article);
+        }
     });
 }
 
