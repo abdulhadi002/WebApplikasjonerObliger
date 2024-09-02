@@ -46,9 +46,15 @@ function handleFormSubmit(): void {
         const projectSection = document.querySelector('.all-projects');
         if (projectSection) {
             const article = document.createElement('article');
-            article.innerHTML = '{project: {id: number; "project-name": string; description: string; "image-scr: string;"[];}}';
+            article.innerHTML = `
+                <img src="${newProject['Image-scr']}" alt="${newProject['project-name']} image">
+                <p>${newProject.description}</p>
+                <a href="#">${newProject['project-name']}</a>
+            `;
 
             projectSection.appendChild(article);
+
+            form.reset();
         }
     });
 }

@@ -28,12 +28,12 @@
                 />
                 <figcaption>New project image</figcaption>
               </figure>
-            <form action="*" method="post">
+            <form id="create-project-form">
                 <button type="submit">Create</button><br>
                 <label for="name">Name for your project</label><br>
-                <input type="text" name="name" id="name" autocomplete="given-name"><br>
+                <input type="text" name="name" id="name" autocomplete="given-name" required><br>
                 <label id="description">Description</label><br>
-                <textarea name="description"></textarea><br>
+                <textarea name="description" id="description" required></textarea><br>
             </form>
         </section>
         <button type="button" class="show-all-button">Show all</button><br>
@@ -58,11 +58,6 @@
                 <img src="https://placehold.co/100x100" alt="article-4-imge">
                 <p>Here is your article</p>
                 <a href="*">Forth project</a>
-            </article>
-            <article>
-                <img src="https://placehold.co/100x100" alt="article-5-imge">
-                <p>Here is your article</p>
-                <a href="*">Fifth project</a>
             </article>
         </section>
     </main>
