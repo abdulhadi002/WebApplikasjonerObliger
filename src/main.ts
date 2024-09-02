@@ -36,8 +36,16 @@ function handleFormSubmit(): void {
         const projectName = (document.getElementById('name') as HTMLInputElement).value;
         const projectDescription = (document.getElementById('description') as HTMLTextAreaElement).value;
 
+        const newProject: Project = {
+            id: Date.now(),
+            'project-name': projectName,
+            description: projectDescription,
+            'Image-scr': 'Image'
+        };
+
+
         
-    })
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
