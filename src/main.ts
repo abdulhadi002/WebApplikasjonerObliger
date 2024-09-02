@@ -27,6 +27,19 @@ function displayProjects(projects: Project[]): void {
   }
 }
 
+function handleFormSubmit(): void {
+    const form = document.getElementById('create-project-form') as HTMLFormElement;
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const projectName = (document.getElementById('name') as HTMLInputElement).value;
+        const projectDescription = (document.getElementById('description') as HTMLTextAreaElement).value;
+
+        
+    })
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const projects = getAllProjects();
   displayProjects(projects);
