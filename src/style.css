@@ -19,6 +19,10 @@ nav ul li{
     align-items: center;
 }
 
+.new-article figure img {
+    width: 100%;
+}
+
 .show-all-button {
     float: right;
 }
