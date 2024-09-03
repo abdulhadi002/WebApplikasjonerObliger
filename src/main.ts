@@ -1,5 +1,7 @@
 import projectData from './ProjectInfo.json';
 
+const projects_list: Project[] = [];
+
 interface Project {
   id: number;
   'project-name': string;
@@ -33,15 +35,16 @@ function handleFormSubmit(): void {
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        const projectName = (document.getElementById('name') as HTMLInputElement).value;
         const projectDescription = (document.getElementById('description') as HTMLTextAreaElement).value;
 
         const newProject: Project = {
             id: Date.now(),
-            'project-name': projectName,
+            'project-name': (form.elements.namedItem("project-name") as HTMLInputElement)?.value,
             description: projectDescription,
             'Image-scr': 'Image'
         };
+
+        projects_list.push(newProject);
 
         const projectSection = document.querySelector('.all-projects');
         if (projectSection) {
@@ -63,4 +66,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const projects = getAllProjects();
     displayProjects(projects);
     handleFormSubmit();
-})
+});
+
+
+function loadFromJSON() {
+    fetch("static/data.json")
+    .then((Response) => {
+        return Response.json();
+    })
+
+    .then((data) => {
+        const thisID = document.getElementById("json");
+        console.log(data);
+
+        for (const projecter of data) {
+            const element = document.createElement("p");
+            element.textContent = `${thisID}`;
+        }
+    })
+}
