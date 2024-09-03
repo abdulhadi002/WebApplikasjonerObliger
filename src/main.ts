@@ -1,3 +1,4 @@
+import { error } from 'console';
 import projectData from './ProjectInfo.json';
 
 const projects_list: Project[] = [];
@@ -45,20 +46,28 @@ function handleFormSubmit(): void {
         };
 
         projects_list.push(newProject);
+        displayProjects([newProject]);
+        form.reset();
+    });
+}
 
-        const projectSection = document.querySelector('.all-projects');
-        if (projectSection) {
-            const article = document.createElement('article');
-            article.innerHTML = `
-                <img src="${newProject['Image-scr']}" alt="${newProject['project-name']} image">
-                <p>${newProject.description}</p>
-                <a href="#">${newProject['project-name']}</a>
-            `;
+function loadFromJSON() {
+    fetch("static/data.json")
+    .then((response) => response.json())
+    .then((data: Project[]) => {
+        const JSONID = document.getElementById("json");
+        console.log(data);
 
-            projectSection.appendChild(article);
-
-            form.reset();
+        if (JSONID) {
+            data.forEach((project) => {
+                const projecter = document.createElement("p");
+                projecter.textContent = project['project-name'];
+                JSONID.appendChild(projecter);
+            });
         }
+    })
+    .catch((error) => {
+        console.error("Can't load data from JSON: ", error);
     });
 }
 
@@ -67,21 +76,3 @@ document.addEventListener('DOMContentLoaded', () => {
     displayProjects(projects);
     handleFormSubmit();
 });
-
-
-function loadFromJSON() {
-    fetch("static/data.json")
-    .then((Response) => {
-        return Response.json();
-    })
-
-    .then((data) => {
-        const thisID = document.getElementById("json");
-        console.log(data);
-
-        for (const projecter of data) {
-            const element = document.createElement("p");
-            element.textContent = `${thisID}`;
-        }
-    })
-}
