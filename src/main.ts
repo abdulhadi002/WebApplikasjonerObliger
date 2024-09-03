@@ -60,6 +60,7 @@ function handleFormSubmit(): void {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const projects = getAllProjects();
-  displayProjects(projects);
-});
+    const projects = getAllProjects();
+    displayProjects(projects);
+    handleFormSubmit();
+})
