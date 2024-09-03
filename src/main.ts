@@ -1,79 +1,54 @@
-import { error } from 'console';
-import projectData from './ProjectInfo.json';
+import "./style.css";
 
-const projects_list: Project[] = [];
-
-interface Project {
-  id: number;
-  'project-name': string;
-  description: string;
-  'Image-scr': string;
-}
-
-function getAllProjects(): Project[] {
-  return projectData.project;
-}
-
-function displayProjects(projects: Project[]): void {
-  const projectSection = document.querySelector('.all-projects');
-
-  if (projectSection) {
-    projects.forEach((project) => {
-      const article = document.createElement('article');
-      article.innerHTML = `
-        <img src="${project['Image-scr']}" alt="${project['project-name']} image">
-        <p>${project.description}</p>
-        <a href="#">${project['project-name']}</a>
-      `;
-      projectSection.appendChild(article);
-    });
-  }
-}
-
-function handleFormSubmit(): void {
-    const form = document.getElementById('create-project-form') as HTMLFormElement;
-
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const projectDescription = (document.getElementById('description') as HTMLTextAreaElement).value;
-
-        const newProject: Project = {
-            id: Date.now(),
-            'project-name': (form.elements.namedItem("project-name") as HTMLInputElement)?.value,
-            description: projectDescription,
-            'Image-scr': 'Image'
-        };
-
-        projects_list.push(newProject);
-        displayProjects([newProject]);
-        form.reset();
-    });
-}
-
-function loadFromJSON() {
-    fetch("static/data.json")
-    .then((response) => response.json())
-    .then((data: Project[]) => {
-        const JSONID = document.getElementById("json");
-        console.log(data);
-
-        if (JSONID) {
-            data.forEach((project) => {
-                const projecter = document.createElement("p");
-                projecter.textContent = project['project-name'];
-                JSONID.appendChild(projecter);
-            });
+// Assuming the data.json content is embedded directly into the script
+const projectData = {
+    "project": [
+        {
+            "id": 1,
+            "project-name": "Web Development Project",
+            "description": "A project to develop a responsive website.",
+            "Image-scr": "https://via.placeholder.com/150" // Placeholder image URL
         }
-    })
-    .catch((error) => {
-        console.error("Can't load data from JSON: ", error);
-    });
-}
+    ]
+};
 
-document.addEventListener('DOMContentLoaded', () => {
-    const projects = getAllProjects();
-    displayProjects(projects);
-    handleFormSubmit();
-    loadFromJSON();
-});
+const fetchDataFromJson = () => {
+  const result = projectData.project;
+
+  console.log("Fetched project data:", result);
+
+  const allProjectsSection = document.querySelector(".all-projects");
+  if (!allProjectsSection) {
+    console.error("Error: Could not find the '.all-projects' section in the HTML.");
+    return;
+  }
+
+  for (const project of result) {
+    console.log("Adding project:", project);
+
+    // Create project container
+    const projectContainer = document.createElement("div");
+    projectContainer.classList.add("project-container");
+
+    // Project title
+    const titleElement = document.createElement("h3");
+    titleElement.textContent = project["project-name"];
+    projectContainer.appendChild(titleElement);
+
+    // Project description
+    const descriptionElement = document.createElement("p");
+    descriptionElement.textContent = project.description;
+    projectContainer.appendChild(descriptionElement);
+
+    // Project image
+    const imageElement = document.createElement("img");
+    imageElement.src = project["Image-scr"] || "https://via.placeholder.com/150";
+    imageElement.alt = project["project-name"];
+    projectContainer.appendChild(imageElement);
+
+    allProjectsSection.appendChild(projectContainer);
+  }
+};
+
+// Execute the function to load data
+fetchDataFromJson();

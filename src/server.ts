@@ -24,7 +24,7 @@ app.get("/json", async (c) => {
 });
 
 
-const port = ({ port: 4023});
+const port = ({ port: 1234});
 
 console.log("IT'S WORKING");
 

@@ -33,33 +33,17 @@
                 <input type="text" name="name" id="name" autocomplete="given-name" required><br>
                 <label id="description">Description</label><br>
                 <textarea name="description" id="description" required></textarea><br>
+                <label for="projectImageInput">Select an image:</label><br>
+                <input type="file" id="projectImageInput" accept="image/*"><br>
             </form>
         </section>
         <button type="button" class="show-all-button">Show all</button><br>
         <h2 class="h2">All projects</h2>
         <section class="all-projects">
-            <article>
-                <img src="https://placehold.co/100x100" alt="article-1-imge">
-                <p>Here is your article</p>
-                <a href="*">First project</a>
-            </article>
-            <article>
-                <img src="https://placehold.co/100x100" alt="article-2-imge">
-                <p>Here is your article</p>
-                <a href="*">Seconde project</a>
-            </article>
-            <article>
-                <img src="https://placehold.co/100x100" alt="article-3-imge">
-                <p>Here is your article</p>
-                <a href="*">Third project</a>
-            </article>
-            <article>
-                <img src="https://placehold.co/100x100" alt="article-4-imge">
-                <p>Here is your article</p>
-                <a href="*">Forth project</a>
-            </article>
+            
         </section>
     </main>
     <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/dist/main.js"></script>
 </body>
 </html>
