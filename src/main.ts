@@ -75,4 +75,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const projects = getAllProjects();
     displayProjects(projects);
     handleFormSubmit();
+    loadFromJSON();
 });
